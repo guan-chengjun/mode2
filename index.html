@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>燃煤火电站 3D 交互式仿真</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- 3D 画布容器 -->
+  <div id="app"></div>
+
+  <!-- 左侧：设备列表 -->
+  <aside id="panel-left">
+    <h1>燃煤火电站 3D 仿真</h1>
+    <p class="tip">点击设备名称定位视角；勾选「外壳」显示/隐藏设备外壳，查看内部结构。</p>
+    <div id="equip-list"></div>
+  </aside>
+
+  <!-- 右侧：设备信息 -->
+  <aside id="panel-right">
+    <h2 id="info-name">设备信息</h2>
+    <p id="info-desc">在左侧列表或 3D 场景中点击任意设备，查看其名称与工艺说明。</p>
+  </aside>
+
+  <!-- 底部：仿真与剖切控制 -->
+  <footer id="panel-bottom">
+    <div class="group">
+      <button id="btn-run" class="primary">⏸ 暂停</button>
+      <label>速度
+        <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1" />
+      </label>
+      <label>负荷
+        <input id="load" type="range" min="0" max="100" step="1" value="80" />
+        <span id="load-val">80%</span>
+      </label>
+    </div>
+    <div class="group">
+      <span class="group-title">剖切</span>
+      <label><input type="checkbox" id="clip-x" /> X
+        <input id="clip-x-val" type="range" min="-80" max="80" step="1" value="40" />
+      </label>
+      <label><input type="checkbox" id="clip-y" /> Y
+        <input id="clip-y-val" type="range" min="0" max="60" step="1" value="30" />
+      </label>
+      <label><input type="checkbox" id="clip-z" /> Z
+        <input id="clip-z-val" type="range" min="-60" max="60" step="1" value="30" />
+      </label>
+    </div>
+    <div class="group">
+      <span class="group-title">显示</span>
+      <label><input type="checkbox" id="tg-coal" checked /> 煤流</label>
+      <label><input type="checkbox" id="tg-gas" checked /> 风烟</label>
+      <label><input type="checkbox" id="tg-steam" checked /> 汽水</label>
+      <label><input type="checkbox" id="tg-cool" checked /> 冷却水</label>
+      <label><input type="checkbox" id="tg-fx" checked /> 火焰/羽流</label>
+    </div>
+    <div class="group">
+      <button id="btn-reset">复位视角</button>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
